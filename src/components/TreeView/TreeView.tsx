@@ -1,8 +1,7 @@
-import { render } from "@testing-library/react";
 import Tree from "rc-tree";
 import "rc-tree/assets/index.css";
 import React, { useState } from "react";
-import { conceptDetail } from "./ToolTip";
+import { Tooltip } from 'react-tooltip';
 
 interface TreeNode {
   title: string;
@@ -47,17 +46,32 @@ const treeData: TreeNode[] = [
   },
 ];
 
-export function treeView() {
-  return (
-    <Tree
-      treeData={treeData}
-      checkable={false}                // enable checkboxes
-      defaultExpandAll={true}        // expand all nodes by default
-      showIcon={false}
-      onSelect={(selectedKeys, info) => {
-        console.log('selected', selectedKeys, info);
-      }}             // hide icons
-    />
+export const TreeView: React.FC = () => {
+  const [popupInfo, setPopupInfo] = useState('');
+  const handleSelect = () => {
+  setPopupInfo('something');
+};
 
+  return (
+    <div>
+      <Tree
+        treeData={treeData}
+        checkable={false}                // enable checkboxes
+        defaultExpandAll={true}        // expand all nodes by default
+        showIcon={false}
+        onSelect={handleSelect}
+      />
+
+      {popupInfo && (
+        <div data-tooltip-id="my-tooltip" data-tooltip-content="Hello to you too!" data-tooltip-place="bottom">
+          <div >
+            <h3>pHCaCl2</h3>
+            <p><strong>IRI:</strong> <a href="http://w3id.org/glosis/model/procedure/pHProcedure-pHCaCl2" target="_blank">http://w3id.org/glosis/model/procedure/pHProcedure-pHCaCl2</a></p>
+            <p><strong>Definition:</strong> pHCaCl2 (soil reaction) in a soil/CaCl2 solution (0.01-1 M)</p>
+            <p><strong>Source:</strong> GloSIS</p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

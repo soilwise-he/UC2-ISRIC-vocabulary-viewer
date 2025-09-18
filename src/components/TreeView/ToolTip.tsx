@@ -1,5 +1,6 @@
+import React from 'react';
 import { Tooltip } from 'react-tooltip';
-export function conceptDetail() {
+export const ConceptDetail: React.FC = () => {
     return (
         <a
             data-tooltip-id="my-tooltip"
