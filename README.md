@@ -1,8 +1,12 @@
 # UC2 ISRIC Vocabulary Viewer
 
-Create a vocabulary viewer to display soil properties in a hierachical structure. Use [soil health knowledge graph](https://github.com/soilwise-he/soil-health-knowledge-graph).
+Create a vocabulary viewer to display observable soil properties and procedures in a hierachical structure. Use [soil health knowledge graph](https://github.com/soilwise-he/soil-health-knowledge-graph).
 
-Currently build it as a front-end React app.
+This is an React app, facilitate the front-end of the vocab viewer.
+
+**Screenshot**:
+![alt text](image.png)
+
 
 # Getting Started with Create React App
 
