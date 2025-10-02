@@ -5,7 +5,7 @@ Create a vocabulary viewer to display observable soil properties and procedures 
 This is an React app, facilitate the front-end of the vocab viewer.
 
 **Screenshot**:
-![alt text](image.png)
+![alt text](![alt text](image.png))
 
 
 # Getting Started with Create React App

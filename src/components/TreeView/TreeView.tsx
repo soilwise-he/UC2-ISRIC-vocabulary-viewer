@@ -9,6 +9,13 @@ interface TreeNode {
   children?: TreeNode[];
 }
 
+interface ConceptInfo {
+  iri: string;
+  label: string;
+  source: string;
+  definition: string;
+}
+
 const treeData: TreeNode[] = [
   { 
     title: "soil properties", 
@@ -47,9 +54,16 @@ const treeData: TreeNode[] = [
 ];
 
 export const TreeView: React.FC = () => {
-  const [popupInfo, setPopupInfo] = useState('');
+  const [popupInfo, setPopupInfo] = useState<ConceptInfo | null>(null);
   const handleSelect = () => {
-  setPopupInfo('something');
+  setPopupInfo(
+    {
+        iri: 'http://w3id.org/glosis/model/procedure/pHProcedure-pHCaCl2',
+        label: 'pHCaCl2',
+        source: 'GloSIS',
+        definition: 'pHCaCl2 (soil reaction) in a soil/CaCl2 solution (0.01-1 M)',
+    }
+  );
 };
 
   return (
@@ -63,14 +77,20 @@ export const TreeView: React.FC = () => {
       />
 
       {popupInfo && (
-        <div data-tooltip-id="my-tooltip" data-tooltip-content="Hello to you too!" data-tooltip-place="bottom">
-          <div >
-            <h3>pHCaCl2</h3>
-            <p><strong>IRI:</strong> <a href="http://w3id.org/glosis/model/procedure/pHProcedure-pHCaCl2" target="_blank">http://w3id.org/glosis/model/procedure/pHProcedure-pHCaCl2</a></p>
-            <p><strong>Definition:</strong> pHCaCl2 (soil reaction) in a soil/CaCl2 solution (0.01-1 M)</p>
-            <p><strong>Source:</strong> GloSIS</p>
+        <div style={{
+          position: 'absolute',
+          // top: popupInfo.y,
+          // left: popupInfo.x,
+          background: '#45818e',
+          color: '#fff',
+          padding: '8px 12px',
+          borderRadius: '8px'
+        }}>
+          <h3>{popupInfo.label}</h3>
+          <p><strong>IRI:</strong> <a href={popupInfo.iri} target="_blank">{popupInfo.iri}</a></p>
+          <p><strong>Definition:</strong> {popupInfo.definition}</p>
+          <p><strong>Source:</strong> {popupInfo.source}</p>
           </div>
-        </div>
       )}
     </div>
   );
